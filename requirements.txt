@@ -11,3 +11,4 @@ sse_starlette
 pypdf
 bs4
 wikipedia
+langchain-text-splitters
