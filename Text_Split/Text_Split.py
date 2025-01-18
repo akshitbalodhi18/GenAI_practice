@@ -38,3 +38,19 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
 final_docs = text_splitter.create_documents([speech])
 print(final_docs)
 
+
+
+
+##Character text splitter
+# This splits the text into different documents on the basis of the character that we provide. The default seperator is /n/n
+
+#first importing a text file to be split
+newspeech = ""
+with open ("speech.txt") as f:
+    newspeech = f.read()
+
+#Import character text splitter function
+from langchain_text_splitters import CharacterTextSplitter
+text_splitter = CharacterTextSplitter(separator="/n", chunk_size=100, chunk_overlap=20)
+final=text_splitter.create_documents([newspeech])
+print(final)
