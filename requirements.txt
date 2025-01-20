@@ -3,7 +3,6 @@ langchain_core
 langchain_community
 ipykernel
 streamlit
-dotenv
 fastapi
 langserve
 uvicorn
