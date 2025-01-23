@@ -102,3 +102,48 @@ headers_to_split_on=[
 html_splitter=HTMLHeaderTextSplitter(headers_to_split_on)
 html_header_splits=html_splitter.split_text(html_string)
 print(html_header_splits)
+
+
+
+
+
+
+
+
+
+
+
+
+
+###Recursive JSON Splitter
+#This splitter is used to split json data while allowwing control over the chunk size. It keeps nested chunks whole but tries its best to split between the min chunk and max chunk size
+
+print("\n\n Now we are diving into the recursive json splitter")
+import json
+import requests
+json_data = requests.get("https://api.smith.langchain.com/openapi.json").json()
+print("\n The type of data imported from the api response is")
+print(type(json_data))
+print("\nJSON data is\n")
+#print(json_data)
+
+##In this case the json that is imported is a dictionary
+
+from langchain_text_splitters import RecursiveJsonSplitter
+text_splitter = RecursiveJsonSplitter(max_chunk_size=300)
+newjson = text_splitter.split_json(json_data)
+print("\nAfter splitting the type of data is\n")
+print(type(newjson))
+print("\nLength of new splitted json is\n")
+print(len(newjson))
+print("The first three chunks along with their data type")
+for chunk in newjson[:3]:
+    print(type(chunk))
+    print(chunk)
+    
+## We can also create langchain documents of json data
+print("\nNow we are creating langhcain documents of json data")
+finaljson = text_splitter.create_documents(texts=[json_data])
+for doc in finaljson[:3]:
+    print(doc)
+    
