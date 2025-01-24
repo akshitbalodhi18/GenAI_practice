@@ -12,3 +12,6 @@ bs4
 wikipedia
 langchain-text-splitters
 langchain-ollama
+python-dotenv
+langchain-huggingface
+sentence-transformers
